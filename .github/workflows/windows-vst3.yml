@@ -1,0 +1,75 @@
+name: Build and validate Windows VST3
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Draft release containing the complete source archive
+        required: true
+        default: v1.5.0
+      source_sha256:
+        description: Expected SHA-256 of the source archive
+        required: true
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-2022
+    timeout-minutes: 35
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch exact corresponding source
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
+          SOURCE_SHA256: ${{ inputs.source_sha256 }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          gh release download $env:RELEASE_TAG --repo $env:GITHUB_REPOSITORY --pattern '*-Source.zip' --dir source-input
+          if ($LASTEXITCODE -ne 0) { throw 'Source download failed' }
+          $archive = Get-ChildItem source-input -Filter '*-Source.zip' | Select-Object -First 1
+          if ((Get-FileHash $archive.FullName -Algorithm SHA256).Hash.ToLower() -ne $env:SOURCE_SHA256.ToLower()) { throw 'Source checksum mismatch' }
+          Expand-Archive $archive.FullName -DestinationPath source
+          $root = (Get-ChildItem source -Directory | Select-Object -First 1).FullName
+          "TWEETER_SOURCE=$root" >> $env:GITHUB_ENV
+      - name: Build and test production processor and compiled VST3
+        run: |
+          & "$env:TWEETER_SOURCE/scripts/build-windows.ps1"
+          if ($LASTEXITCODE -ne 0) { throw 'Build or host verification failed' }
+      - name: Validate compiled VST3 with pluginval 1.0.4
+        run: |
+          $ErrorActionPreference = 'Stop'
+          Invoke-WebRequest 'https://github.com/Tracktion/pluginval/releases/download/v1.0.4/pluginval_Windows.zip' -OutFile pluginval.zip
+          if ((Get-FileHash pluginval.zip -Algorithm SHA256).Hash.ToLower() -ne 'c08e61ce3b96db41636f8ec7e76f4c7e2c13ebdac7fa1b5a1f52b4f32ec715ab') { throw 'pluginval checksum mismatch' }
+          Expand-Archive pluginval.zip -DestinationPath pluginval
+          & ./pluginval/pluginval.exe --strictness-level 5 --validate "$env:TWEETER_SOURCE/build-windows/TittyTweeter_artefacts/Release/VST3/Titty Tweeter.vst3" 2>&1 | Tee-Object -FilePath "$env:TWEETER_SOURCE/evidence/windows-pluginval.log"
+          if ($LASTEXITCODE -ne 0) { throw 'pluginval failed' }
+      - name: Package verified Windows download
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $version = '1.5.0'
+          $package = "Titty-Tweeter-$version-Windows-x64"
+          New-Item -ItemType Directory -Path $package, release-output | Out-Null
+          Copy-Item "$env:TWEETER_SOURCE/build-windows/TittyTweeter_artefacts/Release/VST3/Titty Tweeter.vst3" $package -Recurse
+          Copy-Item "$env:TWEETER_SOURCE/build-windows/TittyTweeter_artefacts/Release/Standalone/Titty Tweeter.exe" $package
+          Copy-Item "$env:TWEETER_SOURCE/Packaging/INSTALL-WINDOWS.txt" "$package/READ ME FIRST.txt"
+          Copy-Item "$env:TWEETER_SOURCE/LICENSE", "$env:TWEETER_SOURCE/THIRD-PARTY-NOTICES.md" $package
+          Copy-Item "$env:TWEETER_SOURCE/evidence/windows-pluginval.log" $package
+          Compress-Archive -Path $package -DestinationPath "release-output/$package.zip"
+          $hash = (Get-FileHash "release-output/$package.zip" -Algorithm SHA256).Hash.ToLower()
+          "$hash  $package.zip" | Set-Content "release-output/$package.sha256"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: verified-windows-x64
+          path: release-output/*
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-verification
+          path: |
+            source/*/evidence/windows-vst3/*
+            source/*/evidence/windows-pluginval.log
+            source/*/build-windows/Testing/Temporary/LastTest.log
