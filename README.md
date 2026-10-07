@@ -15,3 +15,7 @@ Landing page HTML/CSS/JavaScript: Copyright 2026 Pixel Records, GNU AGPLv3; see 
 Pixel Records permits use, copying and redistribution of included product artwork with or in promotion of Titty Tweeter. This does not grant separate rights to the Pixel Records name or logo or imply endorsement. Local fonts retain their included OFL licenses.
 
 Americana banner and fictional retail-box artwork are available in the Americana Store Kit on the 1.4.0 release. PNG masters, alpha transparency, exact prompts and provenance are included. The packaging illustrates a digital download; no physical product is offered.
+
+## Windows / Selene supplement
+
+The banner and transparent Selene sticker were generated using the built-in image_gen tool from user-supplied visual references. The kit’s `windows95-crt-banner-v2.png` is the final banner; v1 preserves the original CRT-only design. The kit’s `selene-windows-sticker-v1.png` is an RGBA die-cut master. Exact prompts are in `prompts/`. The final banner and sticker, prompts and provenance are in the Windows Selene Art Kit release asset. The retro Windows 95 UI is fictional promotional artwork, not a shipped skin or compatibility claim. The artwork is a fan-made tribute, not an endorsement or affiliation with Selene.
