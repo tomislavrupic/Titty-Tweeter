@@ -2,7 +2,7 @@
 
 Public landing page: https://tomislavrupic.github.io/Titty-Tweeter/
 
-This repository contains the static landing page, optimized screenshots and promotional artwork. The macOS plugin, complete AGPLv3 corresponding source (including pinned JUCE), and full-resolution artwork are available from [Releases](https://github.com/tomislavrupic/Titty-Tweeter/releases).
+This repository contains the static landing page, optimized screenshots and promotional artwork. The Mac AU/VST3 and Windows x64 VST3 downloads, complete AGPLv3 corresponding source (including pinned JUCE), and full-resolution artwork are available from [Releases](https://github.com/tomislavrupic/Titty-Tweeter/releases).
 
 Run `python3 -m http.server 4178` to preview locally. No build step, telemetry or remote fonts.
 

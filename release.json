@@ -1,6 +1,18 @@
 {
-  "version": "1.4.0",
+  "version": "1.5.0",
   "signing": "Developer ID signed \u00b7 Apple notarized.",
-  "architecture": "arm64",
-  "license": "AGPL-3.0-only"
+  "architecture": "Mac arm64; Windows x64",
+  "license": "AGPL-3.0-only",
+  "formats": {
+    "macOS": [
+      "AUv2",
+      "VST3",
+      "Standalone"
+    ],
+    "Windows": [
+      "VST3",
+      "Standalone"
+    ]
+  },
+  "windowsSigning": "Unsigned"
 }
