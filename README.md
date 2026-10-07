@@ -21,3 +21,7 @@ Americana banner and fictional retail-box artwork are available in the Americana
 The banner and transparent Selene sticker were generated using the built-in image_gen tool from user-supplied visual references. The kit’s `windows95-crt-banner-v2.png` is the final banner; v1 preserves the original CRT-only design. The kit’s `selene-windows-sticker-v1.png` is an RGBA die-cut master. Exact prompts are in `prompts/`. The final banner and sticker, prompts and provenance are in the Windows Selene Art Kit release asset. The retro Windows 95 UI is fictional promotional artwork, not a shipped skin or compatibility claim. The artwork is a fan-made tribute, not an endorsement or affiliation with Selene.
 
 Version 1.6.0 adds Selene / Midnight Lace: an approved fictional cartoon witch speaker top, native goth controls and a focused 10 kHz starting point. The public screenshot set includes seven current skins plus legacy Classic. Existing character automation values and old preset indices remain unchanged.
+
+## Vintage store box v2
+
+The current store and landing-page package uses `store-box-v2`, a square vintage software carton with worn edges, chrome/pink lettering, feature panels and the original speaker machine. The built-in image_gen tool used the v1 box and supplied KitiKat catalog artwork as references. The original v1 and existing intro video remain preserved. The Vintage Store Kit v2 release asset contains the PNG master, optimized WebP, exact prompt, provenance and unchanged Americana banner.
