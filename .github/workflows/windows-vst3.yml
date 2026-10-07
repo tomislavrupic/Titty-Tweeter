@@ -10,7 +10,8 @@ on:
         description: Expected SHA-256 of the source archive
         required: true
 permissions:
-  contents: read
+  # GitHub requires push access to read unpublished draft-release assets.
+  contents: write
 jobs:
   windows:
     runs-on: windows-2022
