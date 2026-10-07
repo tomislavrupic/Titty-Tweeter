@@ -33,6 +33,11 @@ jobs:
           $archive = Get-ChildItem source-input -Filter '*-Source.zip' | Select-Object -First 1
           if ((Get-FileHash $archive.FullName -Algorithm SHA256).Hash.ToLower() -ne $env:SOURCE_SHA256.ToLower()) { throw 'Source checksum mismatch' }
           Expand-Archive $archive.FullName -DestinationPath source
+          # ZIP stores local wall-clock timestamps without a time zone. On a
+          # UTC runner, Mac-produced entries can look two hours in the future
+          # and trigger concurrent CMake regeneration inside MSBuild.
+          $sourceTime = [DateTime]::UtcNow.AddMinutes(-1)
+          Get-ChildItem source -Recurse -File | ForEach-Object { $_.LastWriteTimeUtc = $sourceTime }
           $root = (Get-ChildItem source -Directory | Select-Object -First 1).FullName
           "TWEETER_SOURCE=$root" >> $env:GITHUB_ENV
       - name: Build and test production processor and compiled VST3
