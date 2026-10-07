@@ -4,7 +4,8 @@ const characters = {
   walnut: ['WALNUT / WARM VALVES', 'Rounded highs. Broad presence. Warm manners.'],
   neon: ['NEON / ELECTRIC SILK', 'Bright sheen. Wider highs. Pink confidence.'],
   americana: ['AMERICANA / EAGLE MODE', 'One POWER knob. High lift and selective 10 kHz de-essing.'],
-  mint: ['MINT / FRESH START', 'Focused 10 kHz cleanup. Fresh perspective.']
+  mint: ['MINT / FRESH START', 'Focused 10 kHz cleanup. Fresh perspective.'],
+  selene: ['SELENE / MIDNIGHT LACE', 'Focused 10 kHz hiss control. A little air. Full goth.']
 };
 const tabs = [...document.querySelectorAll('[data-skin]')];
 function selectCharacter(skin, focus = false) {

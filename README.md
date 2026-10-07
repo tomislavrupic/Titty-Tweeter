@@ -6,7 +6,7 @@ This repository contains the static landing page, optimized screenshots and prom
 
 Run `python3 -m http.server 4178` to preview locally. No build step, telemetry or remote fonts.
 
-The six skin screenshots are authentic native UI captures. The icon, banner and stickers are AI-generated promotional art. Their full-resolution masters and exact prompts are in the brand kit.
+The seven skin screenshots are authentic native UI captures. The icon, banner and stickers are AI-generated promotional art. Their full-resolution masters and exact prompts are in the brand kit.
 
 ## Terms
 
@@ -19,3 +19,5 @@ Americana banner and fictional retail-box artwork are available in the Americana
 ## Windows / Selene supplement
 
 The banner and transparent Selene sticker were generated using the built-in image_gen tool from user-supplied visual references. The kit’s `windows95-crt-banner-v2.png` is the final banner; v1 preserves the original CRT-only design. The kit’s `selene-windows-sticker-v1.png` is an RGBA die-cut master. Exact prompts are in `prompts/`. The final banner and sticker, prompts and provenance are in the Windows Selene Art Kit release asset. The retro Windows 95 UI is fictional promotional artwork, not a shipped skin or compatibility claim. The artwork is a fan-made tribute, not an endorsement or affiliation with Selene.
+
+Version 1.6.0 adds Selene / Midnight Lace: an approved fictional cartoon witch speaker top, native goth controls and a focused 10 kHz starting point. The public screenshot set includes seven current skins plus legacy Classic. Existing character automation values and old preset indices remain unchanged.
