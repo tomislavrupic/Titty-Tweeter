@@ -62,6 +62,7 @@ jobs:
           Copy-Item "$env:TWEETER_SOURCE/build-windows/TittyTweeter_artefacts/Release/Standalone/Titty Tweeter.exe" $package
           Copy-Item "$env:TWEETER_SOURCE/Packaging/INSTALL-WINDOWS.txt" "$package/READ ME FIRST.txt"
           Copy-Item "$env:TWEETER_SOURCE/LICENSE", "$env:TWEETER_SOURCE/THIRD-PARTY-NOTICES.md" $package
+          Copy-Item "$env:TWEETER_SOURCE/third_party/JUCE/modules/juce_audio_processors_headless/format_types/VST3_SDK/LICENSE.txt" "$package/VST3-SDK-LICENSE.txt"
           Copy-Item "$env:TWEETER_SOURCE/evidence/windows-pluginval.log" $package
           Compress-Archive -Path $package -DestinationPath "release-output/$package.zip"
           $hash = (Get-FileHash "release-output/$package.zip" -Algorithm SHA256).Hash.ToLower()
