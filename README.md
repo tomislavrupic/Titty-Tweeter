@@ -13,3 +13,5 @@ The six skin screenshots are authentic native UI captures. The icon, banner and 
 Landing page HTML/CSS/JavaScript: Copyright 2026 Pixel Records, GNU AGPLv3; see LICENSE.
 
 Pixel Records permits use, copying and redistribution of included product artwork with or in promotion of Titty Tweeter. This does not grant separate rights to the Pixel Records name or logo or imply endorsement. Local fonts retain their included OFL licenses.
+
+Americana banner and fictional retail-box artwork are available in the Americana Store Kit on the 1.4.0 release. PNG masters, alpha transparency, exact prompts and provenance are included. The packaging illustrates a digital download; no physical product is offered.
