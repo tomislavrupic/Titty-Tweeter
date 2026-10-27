@@ -29,3 +29,9 @@ The current store and landing-page package uses `store-box-v2`, a square vintage
 ## CRT-only website banner revision
 
 On 2026-10-07 the user selected the supplied CRT-only Windows banner, without the Selene portrait. The current site uses `windows95-crt-banner-v3.webp`, encoded losslessly from that supplied image; previous artwork and the original Windows Selene Art Kit remain preserved. The “because Selene asked” credit and separate sticker remain.
+
+## Notarized Mac plugin release — 27 October 2026
+
+AU/VST3 download: https://github.com/tomislavrupic/Titty-Tweeter/releases/download/notarized-2026-10-27/Titty-Tweeter-1.6.0-macOS-arm64-Notarized-2026-10-27.zip
+
+This release contains the signed, Apple-notarized plugin bundles with stapled tickets. Standalone apps are not part of this Mac plugin ZIP. Save your session, back up previous copies, install whole bundles and restart/rescan your DAW. Existing Windows downloads and artwork remain available.
